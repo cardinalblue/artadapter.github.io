@@ -1,0 +1,6 @@
+@article{chen2023artadapter,
+  title={ArtAdapter: Text-to-Image Style Transfer using Multi-Level Style Encoder and Explicit Adaptation},
+  author={Dar-Yen Chen and Hamish Tennent and Ching-Wen Hsu},
+  booktitle={arXiv preprint arxiv:2312.02109},
+  year={2023}
+}

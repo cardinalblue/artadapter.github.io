@@ -1,0 +1,166 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ArtAdapter</title>
+<link href="./ArtAdapter_files/style.css" rel="stylesheet">
+<script type="text/javascript" src="./ArtAdapter_files/jquery.mlens-1.0.min.js"></script> 
+<script type="text/javascript" src="./ArtAdapter_files/jquery.js"></script>
+</head>
+
+<body>
+<div class="content">
+  <h1><strong>ArtAdapter: Text-to-Image Style Transfer using Multi-Level Style Encoder and Explicit Adaptation</strong></h1>
+
+  <p id="authors">
+    <a href="https://github.com/ChenDarYen">Dar-Yen Chen</a>
+    <a href="">Hamish Tennent</a>
+    <a href="">Ching-Wen Hsu</a>
+    <br>
+    <br>
+    <span style="font-size: 24px">Cardinal Blue</span>
+  </p>
+
+  <br>
+<!--  <img src="./ArtAdapter_files/teaser_static.jpg" class="teaser-gif" style="width:90%;">-->
+  <video class="teaser-video" style="width:90%;" controls poster="./ArtAdapter_files/demo_poster.jpg">
+    <source src="./ArtAdapter_files/demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br>
+
+  <font size="+2">
+      <p style="text-align: center;">
+        <a href="https://arxiv.org/abs/2312.02109" target="_blank">[Paper]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com/cardinalblue/ArtAdapter" target="_blank">[Code]</a> &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="ArtAdapter_files/bibtex.txt" target="_blank">[BibTeX]</a>
+      </p>
+  </font>
+</div>
+
+<div class="content">
+  <h2 style="text-align:center;">Abstract</h2>
+  <img class="summary-img" src="./ArtAdapter_files/banner.jpg" style="width:90%;"> <br>
+  <p>This work introduces ArtAdapter, a transformative text-to-image (T2I) style transfer framework that transcends traditional limitations of color, brushstrokes, and object shape, capturing high-level style elements such as composition and distinctive artistic expression.
+The integration of a multi-level style encoder with our proposed explicit adaptation mechanism enables ArtAdapte to achieve unprecedented fidelity in style transfer, ensuring close alignment with textual descriptions.
+Additionally, the incorporation of an Auxiliary Content Adapter (ACA) effectively separates content from style, alleviating the borrowing of content from style references.
+Moreover, our novel fast finetuning approach could further enhance zero-shot style representation while mitigating the risk of overfitting.
+Comprehensive evaluations confirm that ArtAdapter surpasses current state-of-the-art methods.</p>
+</div>
+
+<div class="content">
+  <h2>Approach</h2>
+  <p>
+    ArtAdapter employs a multi-level style encoder to obtain style embeddings.
+To allow the diffusion backbone to adapt to style concepts, we introduce the Explicit Adaptation mechanism within the cross-attention layers.
+Furthermore, our framework incorporates the Auxiliary Content Adapter (ACA) - a key component during training, that is excluded when inference.
+ACA helps eliminate the influence of the content semantics in the style reference.
+Conclusively, our fast finetuning method is designed to capture more nuanced style characteristics, applicable to both individual and collective style references.
+  </p>
+  <br>
+  <img class="summary-img" src="./ArtAdapter_files/architecture.jpg" style="width:60%;"> <br>
+</div>
+
+<div class="content">
+  <h2>Style Mixing</h2>
+  <p>
+    Our innovative style mixing approach leverages the multi-level style encoder to expand the T2I style transfer's horizons, involving applying distinct styles to different hierarchical levels.
+We show the mixings of two styles: one affects low- and mid-level features, while the other shapes high-level attributes.
+  </p>
+  <br>
+  <img class="summary-img" src="./ArtAdapter_files/style_mixing.jpg" style="width:60%;"> <br>
+</div>
+
+
+<div class="content">
+  <h2>Structure Control</h2>
+  <p>ArtAdapter can be integrated with the existing extra controls like T2I-Adapter.</p>
+  <br>
+  <img class="summary-img" src="./ArtAdapter_files/t2i_adapter.jpg" style="width:90%;"> <br>
+</div>
+
+<div class="content"  id="gallery">
+  <h2>Gallery</h2>
+  <img class="summary-img" src="./ArtAdapter_files/showcase.jpg" style="width:90%;"><br><br>
+  <img class="summary-img" src="./ArtAdapter_files/more_single_1.jpg" style="width:90%;"><br><br>
+  <img class="summary-img" src="./ArtAdapter_files/more_multi_1.jpg" style="width:90%;"><br><br>
+
+  <div id="load">
+    <br>
+    <div style="text-align: center;">
+      <button id="loadMoreButton" class="loadMoreButton">Load More</button>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="content">
+  <h2>BibTex</h2>
+  <code> @article{chen2023artadapter,<br>
+  &nbsp;&nbsp;title={ArtAdapter: Text-to-Image Style Transfer using Multi-Level Style Encoder and Explicit Adaptation},<br>
+  &nbsp;&nbsp;author={Dar-Yen Chen and Hamish Tennent and Ching-Wen Hsu},<br>
+  &nbsp;&nbsp;booktitle={arXiv preprint arxiv:2312.02109},<br>
+  &nbsp;&nbsp;year={2023}<br>
+  } </code> 
+</div>
+
+<br><br>
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <!-- <div class="content"> -->
+      The website template is taken from <a href="https://dreambooth.github.io/">dreambooth</a> project page.
+      <!-- </div> -->
+    </div>
+  </div>
+</footer>
+<br><br>
+
+</body>
+</html>
+
+<script>
+  let currentGroup = 0;
+  const groupContent = [
+    '<div><img class="summary-img" src="./ArtAdapter_files/more_single_2.jpg" style="width:90%;"><br><br></div>',
+    '<div><img class="summary-img" src="./ArtAdapter_files/more_multi_2.jpg" style="width:90%;"><br><br></div>',
+    '<div><img class="summary-img" src="./ArtAdapter_files/more_single_3.jpg" style="width:90%;"><br><br></div>',
+    '<div><img class="summary-img" src="./ArtAdapter_files/more_single_4.jpg" style="width:90%;"><br><br></div>',
+    '<div><img class="summary-img" src="./ArtAdapter_files/more_single_5.jpg" style="width:90%;"><br><br></div>',
+    '<div><img class="summary-img" src="./ArtAdapter_files/more_single_6.jpg" style="width:90%;"><br><br></div>'
+  ];
+
+  const loadMoreButton = document.getElementById('loadMoreButton');
+  const loadSec = document.getElementById('load');
+  loadMoreButton.addEventListener('click', loadMoreContent);
+
+  function loadMoreContent(event) {
+    event.preventDefault();
+    const sectionDiv = document.querySelector('#gallery');
+
+    if (currentGroup < groupContent.length) {
+      appendChild(sectionDiv, currentGroup);
+      currentGroup++;
+      appendChild(sectionDiv, currentGroup);
+      currentGroup++;
+      if (currentGroup >= groupContent.length) {
+        loadMoreButton.disabled = true;
+        loadSec.style.display = 'none';
+      }
+    } else {
+      loadMoreButton.disabled = true;
+      loadSec.style.display = 'none';
+    }
+  }
+
+  function appendChild(sectionDiv, currentGroup) {
+    const newGroupString = groupContent[currentGroup];
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = newGroupString;
+
+    const newGroupDiv = tempDiv.firstChild;
+
+    sectionDiv.insertBefore(newGroupDiv, loadSec);
+  }
+
+</script>
